@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Copyright</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Remover Copyright</h1>
+        <form action="/processar" method="post" enctype="multipart/form-data">
+            <label for="file1" id="label1" class="label">Template para remover Copyright</label>
+            <input type="file" id="file1" name="file1" accept="image/png, image/jpeg">
+            <label for="file2" id="label2" class="label">Seu Template</label>
+            <input type="file" id="file2" name="file2" accept="image/png, image/jpeg">
+            <button type="submit" class="button" id="submitBtn" disabled>Aplicar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('file1').addEventListener('change', function() {
+            document.getElementById('label1').classList.add('selected');
+            checkFilesSelected();
+        });
+
+        document.getElementById('file2').addEventListener('change', function() {
+            document.getElementById('label2').classList.add('selected');
+            checkFilesSelected();
+        });
+
+        function checkFilesSelected() {
+            if (document.getElementById('file1').files.length > 0 && document.getElementById('file2').files.length > 0) {
+                document.getElementById('submitBtn').removeAttribute('disabled');
+            } else {
+                document.getElementById('submitBtn').setAttribute('disabled', true);
+            }
+        }
+    </script>
+</body>
+</html>
